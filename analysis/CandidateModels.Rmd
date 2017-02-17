@@ -27,19 +27,25 @@ caret::varImp(simple)
 ```
 
 ## GLMNET
+This penalises complexity in the model. There are two type, start with the simple method.
 ```{r glmnet}
-net<-caret::train(survived~.,                                       data=titanic_train_c,
-                    method="glmnet")
-
-coef(net$finalModel,s=net$bestTune$lambda)
-caret::varImp(net)
+net <-
+  caret::train(survived ~ .,
+  data = titanic_train_c,
+  method = "glmnet")
+  
+  coef(net$finalModel, s = net$bestTune$lambda)
+  caret::varImp(net)
 ```
 
 ## gbm
+This is a gradient boosted model - it takes multiple little models and combines to create a big model that can explain more than a single model could.
+
 ```{r gbm , results='hide'}
-boosted<-caret::train(survived~.,                                       data=titanic_train_c,
-                    method="gbm"
-                    )
+boosted <-
+  caret::train(survived ~ .,
+  data = titanic_train_c,
+  method = "gbm")
 ```
 
 ```{r gbmprint}

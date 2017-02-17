@@ -21,7 +21,7 @@ titanic_train_c$survived<-survived_tr
 ```
 
 ## Factors
-In some cases with strings, if you want to make these a categorical variable, you need to make sure to incorporate levels from both sets of data.
+In some cases with strings, if you want to make these a categorical variable, you need to make sure to incorporate levels from both sets of data. The base level will be the most common level.
 
 ```{r whatstrings}
 stringcols<- sapply(titanic_train_c, is.character)
@@ -37,10 +37,12 @@ prop.table(table(titanic_train_c$pclass,  titanic_train_c$survived),margin = 1)
 ```
 
 ```{r sex}
-convertsex<-function(x) factor(x, labels=c("male","female"))
+convertsex<-function(x) factor(x, labels=c("female","male"))
 titanic_train_c$sex <- convertsex(titanic_train_c$sex)
 prop.table(table(titanic_train_c$sex,  titanic_train_c$survived),1)
 ```
+
+G and T had very few occurences so they were binned with the missing data.
 
 ```{r cabin}
 convertcabin<-function(x){
